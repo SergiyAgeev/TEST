@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+ page
+<br>
+<!--<p th:text="${hello}"/>-->
+<th:block th:each="x:${list}">
+    <p th:text="${x}"/>
+</th:block>
+
+<div th:include="tmp/template::#menu"/>
+<div th:replace="tmp/template::link"/>
+ <br>
+ <form action="/save" method="post">
+     <input type="text" name="username" placeholder="username">
+     <input type="text" name="email" placeholder="email">
+     <input type="password" name="password" placeholder="password">
+     <input type="text" name="number" placeholder="number">
+     <input type="submit" value="save">
+
+
+ </form>
+
+</body>
+</html>
