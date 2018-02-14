@@ -38,6 +38,17 @@ public class UserServiceImpl implements UserService,UserDetailsService {
     }
 
     @Override
+    public User findOne(int id) {
+        return null;
+    }
+
+    @Override
+    public void delete(int id) {
+        dao.delete(id);
+
+    }
+
+    @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         return findByUserName(username);
     }

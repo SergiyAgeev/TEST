@@ -13,4 +13,5 @@ Index page
 </form>
 
 
+
 <%@include file="templates/footer.jsp"%>

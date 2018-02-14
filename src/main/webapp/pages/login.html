@@ -1,14 +1,37 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org/">
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+    <meta charset="UTF-8"/>
+    <title>Login Page</title>
 </head>
+<style type="text/css">
+    body {
+
+        background-color: #d8da3d }
+</style>
 <body>
+
+<body>
+<p th:each="smokeTest : ${user}"
+   th:text="${smokeTest.name}">A Smoke Test</p>
+</body>
+
 <form action="/login" method="post">
+
+
+
     <input type="text" name="username" placeholder="username">
     <input type="password" name="password" placeholder="password">
     <input type="submit" value="login">
+
+</form>
+<form action="/logout" method="post">
+
+    <input type="submit" value="LogOut">
+
+</form>
+
+<form>
 
 </form>
 

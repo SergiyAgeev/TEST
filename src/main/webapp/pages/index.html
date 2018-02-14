@@ -2,28 +2,44 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org/">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Home Page</title>
 </head>
 <body>
  page
 <br>
 <!--<p th:text="${hello}"/>-->
+<!--/*@thymesVar id="list" type=""*/-->
 <th:block th:each="x:${list}">
-    <p th:text="${x}"/>
+<p th:text="${x}"></p>
 </th:block>
 
-<div th:include="tmp/template::#menu"/>
+
+ <div th:include="tmp/template::#menu"/>
 <div th:replace="tmp/template::link"/>
  <br>
  <form action="/save" method="post">
      <input type="text" name="username" placeholder="username">
      <input type="text" name="email" placeholder="email">
      <input type="password" name="password" placeholder="password">
-     <input type="text" name="number" placeholder="number">
+
      <input type="submit" value="save">
+     <input type="hidden"
+            name="${_csrf.parameterName}"
+            value="${_csrf.token}"/>
 
 
  </form>
+<form  action="/admin" method="get" >
+    <input type="submit" value="adminpage">
+</form>
+ <form action="/logout" method="post">
+
+     <input type="submit" value="LogOut">
+
+ </form>
+ <th:block th:each="x:${UserX}">
+     <p th:text="${x.username} ${x.email}"/>
+ </th:block>
 
 </body>
 </html>

@@ -14,7 +14,7 @@ import java.util.Collection;
         @GeneratedValue(strategy = GenerationType.IDENTITY)
         private int id;
         private String email;
-        private String number;
+
         private String username;
         private String password;
         @Enumerated(EnumType.STRING)
@@ -29,10 +29,10 @@ import java.util.Collection;
         public User() {
         }
 
-        public User( String email, String number, String username, String password) {
+        public User( String email, String username, String password) {
 
             this.email = email;
-            this.number = number;
+
             this.username = username;
             this.password = password;
         }
@@ -53,13 +53,7 @@ import java.util.Collection;
             this.email = email;
         }
 
-        public String getNumber() {
-            return number;
-        }
 
-        public void setNumber(String number) {
-            this.number = number;
-        }
 
         public void setUsername(String username) {
             this.username = username;
@@ -127,7 +121,6 @@ import java.util.Collection;
             return "User{" +
                     "id=" + id +
                     ", email='" + email + '\'' +
-                    ", number='" + number + '\'' +
                     ", username='" + username + '\'' +
                     ", password='" + password + '\'' +
                     '}';
