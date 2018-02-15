@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+
+<head>
+    <meta charset="UTF-8"/>
+    <title>Edit Page</title>
+</head>
+<style type="text/css">
+    body {
+
+        background-color: indianred }
+</style>
+<body>
+<h3>Users List</h3>
+<table >
+    <tr>
+        <th>EDIT</th>
+        <th>ID</th>
+        <th>NAME</th>
+        <th>EMAIL</th>
+
+    </tr>
+    <tr th:each="use,iterationStatus  : ${UserX}">
+        <td>
+            <form >
+                <input th:type="hiden" name="id" value="${use.id}"/>
+                <a th:href="@{'/delete'}">delete user</a>
+            </form>
+            <a th:href="@{'/delete'}">delete user</a>
+        </td>
+        <td th:text="${use.id}">001</td>
+        <td th:text="${use.username}">Name</td>
+        <td th:text="${use.email}">Email</td>
+
+    </tr>
+</table>
+
+
+
+
+</body>
+</html>

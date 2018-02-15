@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin Page</title>
+</head>
+<style type="text/css">
+    body {
+
+        background-color: lightskyblue }
+</style>
+<body>
+
+<form action="/showallusers" method="get">
+    <input type="submit" value="showAllUsers">
+</form>
+
+<form action="/admin/delete" method="get">
+    <input type="submit" value="deleteUser">
+</form>
+
+<form action="/logout" method="post">
+    <input type="submit" value="LogOut">
+</form>
+
+
+</body>
+</html>

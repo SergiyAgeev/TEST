@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Edit User</title>
+
+</head>
+<style type="text/css">
+    body {
+
+        background-color: darkviolet }
+</style>
+<body>
+<h3>${author.authorName} ${author.authorSecondName}</h3>
+
+<form action="/edit/updateAuthor" method="post">
+    <input type="hidden" name="id" placeholder="id" value="${author.id}">
+    <input type="text" name="authorName" placeholder="name" value="${author.authorName}">
+    <input type="text" name="authorSecondName" placeholder="second name" value="${author.authorSecondName}">
+    <input type="submit" value="save">
+</form>
+</body>
+</html>

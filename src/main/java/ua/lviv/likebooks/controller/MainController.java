@@ -69,6 +69,21 @@ public class MainController {
         model.addAttribute("UserX", userService.findAll());
         return "userEditPage";
     }
+//    @RequestMapping("/edit")
+//    @PostMapping ("/updateUser")
+//    public String updateBook(
+//            @RequestParam int id,
+//            @RequestParam String username,
+//            @RequestParam String email
+//    ){
+//
+//        User userOne = userService.findOne(id);
+//        userOne.setUsername(username);
+//        userOne.setEmail(email);
+//        userService.save(userOne);
+//
+//        return "redirect:/userEditPage";
+//    }
 
 
 
