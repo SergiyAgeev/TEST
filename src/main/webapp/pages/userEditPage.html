@@ -18,25 +18,19 @@
         <th>ID</th>
         <th>NAME</th>
         <th>EMAIL</th>
-
     </tr>
-    <tr th:each="use,iterationStatus  : ${UserX}">
+    <tr th:each="use : ${UserX}">
         <td>
-            <form >
-                <input th:type="hiden" name="id" value="${use.id}"/>
-                <a th:href="@{'/delete'}">delete user</a>
+            <form action="/admin/delete" th:action="@{/delete}" method="get">
+            <input type="hidden" name="id" th:value="*{use.id}" />
+            <input type="submit" value="detele"/>
+
             </form>
-            <a th:href="@{'/delete'}">delete user</a>
         </td>
         <td th:text="${use.id}">001</td>
         <td th:text="${use.username}">Name</td>
         <td th:text="${use.email}">Email</td>
-
     </tr>
 </table>
-
-
-
-
 </body>
 </html>

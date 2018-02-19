@@ -11,13 +11,11 @@
         background-color: darkviolet }
 </style>
 <body>
-<h3>${author.authorName} ${author.authorSecondName}</h3>
+USER PAGE
 
-<form action="/edit/updateAuthor" method="post">
-    <input type="hidden" name="id" placeholder="id" value="${author.id}">
-    <input type="text" name="authorName" placeholder="name" value="${author.authorName}">
-    <input type="text" name="authorSecondName" placeholder="second name" value="${author.authorSecondName}">
-    <input type="submit" value="save">
-</form>
+<div >
+    <h3><div th:text="${user}"></div></h3>
+</div>
+
 </body>
 </html>

@@ -1,4 +1,5 @@
 package ua.lviv.likebooks.entity;
+import groovy.transform.IndexedProperty;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -14,11 +15,12 @@ import java.util.Collection;
         @GeneratedValue(strategy = GenerationType.IDENTITY)
         private int id;
         private String email;
-
+        @Column(unique = true)
         private String username;
         private String password;
         @Enumerated(EnumType.STRING)
         private Authority authority = Authority.ROLE_USER;
+        private String avatar;
 
         private boolean accountNonExpired=true;
         private boolean accountNonLocked=true;
@@ -32,7 +34,6 @@ import java.util.Collection;
         public User( String email, String username, String password) {
 
             this.email = email;
-
             this.username = username;
             this.password = password;
         }
@@ -115,6 +116,8 @@ import java.util.Collection;
         public boolean isEnabled() {
             return enabled;
         }
+
+
 
         @Override
         public String toString() {

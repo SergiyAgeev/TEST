@@ -5,16 +5,15 @@
     <title>Home Page</title>
 </head>
 <body>
- page
+
+Now is: <b th:text="${#execInfo.getNow().time}"></b>
+
+
 <br>
-<!--<p th:text="${hello}"/>-->
-<!--/*@thymesVar id="list" type=""*/-->
+
 <th:block th:each="x:${list}">
 <p th:text="${x}"></p>
 </th:block>
-
-
-
 <div th:replace="tmp/template::link"/>
  <br>
  <form action="/save" method="post">
@@ -26,9 +25,8 @@
      <input type="hidden"
             name="${_csrf.parameterName}"
             value="${_csrf.token}"/>
-
-
  </form>
+
 <form  action="/admin" method="get" >
     <input type="submit" value="adminpage">
 </form>
@@ -37,9 +35,12 @@
      <input type="submit" value="LogOut">
 
  </form>
- <th:block th:each="x:${UserX}">
-     <p th:text="${x.username} ${x.email}"/>
- </th:block>
+
+ <form  action="/user" method="get" >
+     <input type="submit" value="UserEdit">
+     <form/>
+
+     <div id="logged-in-info"> <span>Hello, <b th:text="${user.username}"></span>
 
 </body>
 </html>
