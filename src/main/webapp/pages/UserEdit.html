@@ -11,10 +11,15 @@
         background-color: darkviolet }
 </style>
 <body>
-USER PAGE
-
+Hello,<b th:text="${user.username}"/>
+<p/>
+<p/>
 <div >
-    <h3><div th:text="${user}"></div></h3>
+    username <h3><div th:text="${user.username}"></div></h3>
+    password <h3><div th:text="${user.password}"></div></h3>
+    email <h3><div th:text="${user.email}"></div></h3>
+    avatar <img th:src="${user.avatar}" th:alt="${username}">
+
 </div>
 
 </body>

@@ -18,6 +18,7 @@
         <th>ID</th>
         <th>NAME</th>
         <th>EMAIL</th>
+        <th>AVATAR</th>
     </tr>
     <tr th:each="use : ${UserX}">
         <td>
@@ -30,6 +31,7 @@
         <td th:text="${use.id}">001</td>
         <td th:text="${use.username}">Name</td>
         <td th:text="${use.email}">Email</td>
+        <td th:img="@{use.avatar}">avatar</td>
     </tr>
 </table>
 </body>

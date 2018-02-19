@@ -16,10 +16,11 @@ Now is: <b th:text="${#execInfo.getNow().time}"></b>
 </th:block>
 <div th:replace="tmp/template::link"/>
  <br>
- <form action="/save" method="post">
+ <form action="/save" method="post" enctype="multipart/form-data">
      <input type="text" name="username" placeholder="username">
      <input type="text" name="email" placeholder="email">
      <input type="password" name="password" placeholder="password">
+     <input type="file" name="avatar" placeholder="avatar">
 
      <input type="submit" value="save">
      <input type="hidden"
