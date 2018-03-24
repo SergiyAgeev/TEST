@@ -5,16 +5,18 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
-import ua.lviv.likebooks.entity.Authority;
+import ua.lviv.likebooks.entity.Post;
 import ua.lviv.likebooks.entity.User;
 import ua.lviv.likebooks.service.MailService;
+import ua.lviv.likebooks.service.PostService;
 import ua.lviv.likebooks.service.UserService;
 
 import java.io.File;
 import java.io.IOException;
 import java.security.Principal;
-import java.util.ArrayList;
 import java.util.List;
+
+import static java.util.stream.Collectors.toList;
 
 @Controller
 public class MainController {
@@ -22,9 +24,19 @@ public class MainController {
     private MailService mailService;
     @Autowired
     private UserService userService;
+    @Autowired
+    private PostService postService;
 
-    @GetMapping("/")
-    public String index() {
+
+    @RequestMapping("/")
+    public String home(Model model) {
+        List<Post> latest5Posts = postService.findLatest5();
+        model.addAttribute("latest5posts", latest5Posts);
+
+        List<Post> latest3Posts = latest5Posts.stream()
+                .limit(3).collect(toList());
+        model.addAttribute("latest3posts", latest3Posts);
+
         return "index";
     }
 
@@ -70,7 +82,7 @@ public class MainController {
 
     @GetMapping("/logout")
     public String logout() {
-        return "redirect:/index";
+        return "index";
     }
 
     @GetMapping("/showallusers")
@@ -102,4 +114,17 @@ public class MainController {
         uiModel.addAttribute("user", user);
         return "UserEdit";
     }
+    @GetMapping("/Register")
+    public String register() {
+        return "RegisterPage";
+    }
+
+
+    @GetMapping("/getinfo")
+    public String getinfo() {
+        return "InfoPage";
+    }
+
+
+
 }

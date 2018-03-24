@@ -8,19 +8,36 @@
 <style type="text/css">
     body {
 
-        background-color: darkviolet }
+        background-color: antiquewhite;
+    }
 </style>
 <body>
 Hello,<b th:text="${user.username}"/>
+<form action="/logout" method="post">
+
+    <input type="submit" value="LogOut">
+
+</form>
 <p/>
 <p/>
+
 <div >
     username <h3><div th:text="${user.username}"></div></h3>
-    password <h3><div th:text="${user.password}"></div></h3>
     email <h3><div th:text="${user.email}"></div></h3>
-    avatar <img th:src="${user.avatar}" th:alt="${username}">
-
+    avatar <img th:src="${user.avatar}" th:alt="${username}"/>
 </div>
+<b>
+    <form action="/updateUser" th:action="@{/updateUser}" method="post" >
+        <input type="hidden"  name="id" placeholder="id" th:value="${user.id}"}>
+        <input type="" name="username"  th:value="${user.username}"/>
+        <input type="password" name="password"  placeholder="new password"/>
+        <input type="email" name="email"  th:value="${user.email}"/>
+
+        <input type="submit" value="change"/>
+    </form>
+</b>
+
+
 
 </body>
 </html>

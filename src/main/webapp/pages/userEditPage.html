@@ -8,30 +8,32 @@
 <style type="text/css">
     body {
 
-        background-color: indianred }
+        background-color: indianred
+    }
 </style>
 <body>
 <h3>Users List</h3>
-<table >
+<table>
     <tr>
         <th>EDIT</th>
         <th>ID</th>
         <th>NAME</th>
         <th>EMAIL</th>
-        <th>AVATAR</th>
+        <th>NOT LOCKED</th>
     </tr>
     <tr th:each="use : ${UserX}">
         <td>
-            <form action="/admin/delete" th:action="@{/delete}" method="get">
-            <input type="hidden" name="id" th:value="*{use.id}" />
-            <input type="submit" value="detele"/>
+            <form  th:action="@{/delete}" method="get">
+                <input type="hidden" name="id" th:value="*{use.id}"/>
+                <input type="submit" value="detele"/>
 
             </form>
         </td>
         <td th:text="${use.id}">001</td>
         <td th:text="${use.username}">Name</td>
         <td th:text="${use.email}">Email</td>
-        <td th:img="@{use.avatar}">avatar</td>
+        <td th:text="${use.accountNonLocked}">Lock</td>
+
     </tr>
 </table>
 </body>

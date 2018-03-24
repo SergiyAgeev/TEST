@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head>
+    <meta charset="UTF-8">
+    <title>Registration Page</title>
+</head>
+<style type="text/css">
+    body {
+
+        background-color: antiquewhite;
+    }
+</style>
+<body>
+
+<div class="novunupogoduni clearfix">
+    <form action="/save" method="post" enctype="multipart/form-data">
+    <div class="godunu">
+        <div class="textgodun"> <input type="text" name="username" placeholder="username">   input username
+        </div>
+    </div>
+        </p>
+    <div class="poloskahoroz"></div>
+    <div class="godunu">
+        <div class="textgodun"><input type="text" name="email" placeholder="email">   input your email
+        </div>
+    </div>
+        </p>
+    <div class="poloskahoroz"></div>
+    <div class="godunu">
+        <div class="textgodun"><input type="password" name="password" placeholder="password">   input your password
+        </div>
+    </div>
+        </p>
+    <div class="poloskahoroz"></div>
+    <div class="godunu">
+        <div class="textgodun"><input type="file" name="avatar" placeholder="avatar">chose avatar
+        </div>
+    </div>
+        </p>
+    <div class="poloskahoroz"></div>
+    <div class="godunu">
+        <div class="textgodun"> <input type="submit" value="Register"> Click here for registration!
+        </div>
+    </div>
+        <div class="godunu">
+            <div class="textgodun">  <input type="hidden"
+                                            name="${_csrf.parameterName}"
+                                            value="${_csrf.token}"/>
+            </div>
+        </div>
+    </form>
+    <!--<input type="text" name="username" placeholder="username">-->
+    <!--<input type="text" name="email" placeholder="email">-->
+    <!--<input type="password" name="password" placeholder="password">-->
+    <!--<input type="file" name="avatar" placeholder="avatar">-->
+
+    <!--<input type="submit" value="Register">-->
+    <!--<input type="hidden"-->
+           <!--name="${_csrf.parameterName}"-->
+           <!--value="${_csrf.token}"/>-->
+
+</body>
+</html>

@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head>
+    <meta charset="UTF-8">
+    <title>Posts</title>
+</head>
+<style type="text/css">
+    body {
+
+        background-color: antiquewhite;
+    }
+</style>
+<body>
+
+
+<div class="topmenu">
+    <ul>
+        <a th:href="@{/Register}"/>
+        <li>Register</li>
+        </a>
+        <a th:href="@{/login}">
+            <li><b>LogIn</b></li>
+        </a>
+
+        <a th:href="@{/user}">
+            <li>Edit Profile</li>
+        </a>
+
+        <a th:href="@{/logout}">
+            <li><b>LogOut</b></li>
+        </a>
+
+
+    </ul>
+</div>
+<hr>
+<div class="linehoriz"></div>
+<div class="bigmenu" style="margin-left: 470px;">
+    <ul>
+        <a href="/">
+            <li>MAIN</li>
+        </a>
+        <a href="#">
+            <li>NEWS</li>
+        </a>
+        <a th:href="@{/posts}">
+            <li>POSTS</li>
+        </a>
+        <a href="#">
+            <li>ABOUT PROJECT</li>
+        </a>
+        <a th:href="@{/getinfo}">
+            <li>INFO</li>
+        </a>
+
+    </ul>
+</div>
+
+<hr>
+<div class="linehoriz"></div>
+<table>
+    <tr>
+
+        <th>TITLE</th>
+        <th>BODY</th>
+        <th>AUTHOR</th>
+        <th>DATE</th>
+
+    </tr>
+    <tr th:each="post : ${postsX}">
+        <td> <a th:href="@{/post-{id} (id=${post.id})}" ><div th:text="${post.title}"/></a></td>
+        <td th:text="${post.body}"></td>
+        <td th:text="${post.author.username}"></td>
+        <td th:text="${post.date}"></td>
+
+    </tr>
+</table>
+
+<form action="/createpost" method="post">
+    <input type="submit" value="Create Post">
+    <br>
+</form>
+
+
+    <div th:replace="tmp/template::link"/>
+    <br>
+
+</body>
+</html>

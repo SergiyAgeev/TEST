@@ -1,47 +1,124 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org/">
+
 <head>
     <meta charset="UTF-8">
-    <title>Home Page</title>
-</head>
-<body>
 
-Now is: <b th:text="${#execInfo.getNow().time}"></b>
+    <title>Like Books Lviv</title>
+</head>
+<style type="text/css">
+    body {
+
+        background-color: antiquewhite;
+    }
+</style>
+<body>
+<div class="topmenu">
+    <ul>
+        <a th:href="@{/Register}"/>
+        <li>Register</li>
+        </a>
+        <a th:href="@{/login}">
+            <li><b>LogIn</b></li>
+        </a>
+
+        <a th:href="@{/user}">
+            <li>Edit Profile</li>
+        </a>
+
+        <a th:href="@{/logout}">
+            <li><b>LogOut</b></li>
+        </a>
+    </ul>
+
+</div>
+<hr>
+<div class="linehoriz"></div>
+<div class="bigmenu" style="margin-left: 470px;">
+
+    <ul>
+        <a href="/">
+            <li>MAIN</li>
+        </a>
+        <a href="#">
+            <li>NEWS</li>
+        </a>
+        <a th:href="@{/posts}">
+            <li>POSTS</li>
+        </a>
+        <a href="#">
+            <li>ABOUT PROJECT</li>
+        </a>
+        <a th:href="@{/getinfo}">
+            <li>INFO</li>
+        </a>
+
+    </ul>
+</div>
+<hr>
+<div class="linehoriz"></div>
+<div class="leftbigblock w-33">
+    <div class="leftbigblocktitle1"><a th:href="@{/posts}">Posts</a>
+        <tr>
+    </div>
+
+
+    <main id="posts">
+        <article th:each="p : ${latest3posts}">
+            <h2 class="title" th:text="${p.title}">Post Title</h2>
+            <div class="date">
+                <i>Posted on</i>
+                <span th:text="${#dates.format(p.date, 'dd-MMM-yyyy')}">22-May-2016</span>
+                <span th:if="${p.author}" th:remove="tag">
+
+                </span>
+            </div>
+            <div class="linehoriz"></div>
+        </article>
+    </main>
+
+    </p>
+
+
+</div>
+
+
+<!--Now is: <b th:text="${#execInfo.getNow().time}"></b>-->
+<!--</p>-->
+<!--Current time : <div th:text="${execInfo.now.time}">Wed Feb 10 13:55:58 IST 2016</div>-->
 
 
 <br>
 
-<th:block th:each="x:${list}">
-<p th:text="${x}"></p>
-</th:block>
+
 <div th:replace="tmp/template::link"/>
- <br>
- <form action="/save" method="post" enctype="multipart/form-data">
-     <input type="text" name="username" placeholder="username">
-     <input type="text" name="email" placeholder="email">
-     <input type="password" name="password" placeholder="password">
-     <input type="file" name="avatar" placeholder="avatar">
+<br>
 
-     <input type="submit" value="save">
-     <input type="hidden"
-            name="${_csrf.parameterName}"
-            value="${_csrf.token}"/>
- </form>
+</tr>
+<div class="pidval">
+    <div class="liniared"></div>
 
-<form  action="/admin" method="get" >
-    <input type="submit" value="adminpage">
-</form>
- <form action="/logout" method="post">
+    <div class="linehor"></div>
 
-     <input type="submit" value="LogOut">
+    <div class="dnopidval">
+        <ul>
+            <li>  created by: <b>Sergiy Ageev</b></li>
+            <li><a href="https://www.facebook.com/ageevsergiy">facebook</a></li>
+            <li><a href="https://www.linkedin.com/in/sergiy-ageev-9a545a154/">linkedin</a></li>
+            <li>  E-mail: sergiyageev@gmail.com</li>
+        </ul>
+    </div>
+    <div class="dnopidval2">
+        <ul>
+            <li><h2><p>Looking for trainee/junior Java position</p></h2></li>
+            <li><a href="#"><p>#GITHUB</p></a></li>
+            <a th:href="@{/admin}"/>
+            <li>admin</li>
+            </a>
+        </ul>
+    </div>
+</div>
 
- </form>
-
- <form  action="/user" method="get" >
-     <input type="submit" value="UserEdit">
-     <form/>
-
-     <div id="logged-in-info"> <span>Hello, <b th:text="${user.username}"></span>
 
 </body>
 </html>

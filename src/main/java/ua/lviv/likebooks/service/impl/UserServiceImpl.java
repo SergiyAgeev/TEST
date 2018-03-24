@@ -22,9 +22,15 @@ public class UserServiceImpl implements UserService,UserDetailsService {
     private PasswordEncoder passwordEncoder;
     @Override
     public void save(User user) {
-        String encodepassword = passwordEncoder.encode(user.getPassword());
-        user.setPassword(encodepassword);
-        dao.save(user);
+        if  (user.getUsername()==null || user.getPassword()==null || user.getEmail()==null){
+            System.out.println("ERROR GUYS");
+        }else {
+            String encodepassword = passwordEncoder.encode(user.getPassword());
+            user.setPassword(encodepassword);
+            dao.save(user);
+        }
+
+
     }
 
     @Override

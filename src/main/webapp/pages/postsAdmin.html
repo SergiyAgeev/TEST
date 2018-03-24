@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit Posts</title>
+</head>
+<body>
+<table>
+    <tr>
+        <th>EDIT</th>
+        <th>TITLE</th>
+        <th>BODY</th>
+        <th>AUTHOR</th>
+        <th>DATE</th>
+
+    </tr>
+    <tr th:each="post : ${postsZ}">
+        <td>
+            <form  th:action="@{/deletepost}" method="get">
+                <input type="hidden" name="id" th:value="${post.id}"/>
+                <input type="submit" value="detele"/>
+
+            </form>
+        </td>
+        <td th:text="${post.title}"></td>
+        <td th:text="${post.body}"></td>
+        <td th:text="${post.author.username}"></td>
+        <td th:text="${post.date}"></td>
+
+    </tr>
+</table>
+</body>
+</html>

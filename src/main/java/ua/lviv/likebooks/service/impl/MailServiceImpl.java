@@ -11,7 +11,7 @@ import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
 
 @Service
-public class MainServiceImpl implements MailService{
+public class MailServiceImpl implements MailService{
     @Autowired
     private JavaMailSender javaMailSender;
 
@@ -22,7 +22,7 @@ public class MainServiceImpl implements MailService{
         try {
             helper.setFrom("sergiyageev@gmail.com");
             helper.setTo(user.getEmail());
-            helper.setText("Hello, "+user.getUsername()+" !",true);
+            helper.setText("Hello, "+user.getUsername()+" !"+" you just register on my service.",true);
         } catch (MessagingException e) {
             e.printStackTrace();
         }

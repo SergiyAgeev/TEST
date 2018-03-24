@@ -8,6 +8,8 @@ import org.springframework.security.core.userdetails.UserDetails;
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 
@@ -15,12 +17,30 @@ public class User implements UserDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+
+    @Column(nullable = false, unique = true)
     private String email;
-    @Column(unique = true)
+
+    @Column(nullable = false, length = 30, unique = true)
     private String username;
+
     private String password;
     @Enumerated(EnumType.STRING)
+
     private Authority authority = Authority.ROLE_USER;
+
+    @OneToMany(mappedBy = "author", cascade=CascadeType.ALL)
+    private Set<Post> posts = new HashSet<Post>() {
+
+    };
+
+    @OneToMany(mappedBy = "commentator", cascade=CascadeType.ALL)
+    private Set<Comments> comments = new HashSet<Comments>() {
+
+    };
+
+
+
     private String avatar;
 
     private boolean accountNonExpired = true;
@@ -30,6 +50,11 @@ public class User implements UserDetails {
 
 
     public User() {
+    }
+
+    public User(String email, String username) {
+        this.email = email;
+        this.username = username;
     }
 
     public User(String email, String username, String password) {
@@ -100,6 +125,22 @@ public class User implements UserDetails {
         return authorities;
     }
 
+    public Set<Post> getPosts() {
+        return posts;
+    }
+
+    public void setPosts(Set<Post> posts) {
+        this.posts = posts;
+    }
+
+    public Set<Comments> getComments() {
+        return comments;
+    }
+
+    public void setComments(Set<Comments> comments) {
+        this.comments = comments;
+    }
+
     @Override
     public String getPassword() {
         return password;
@@ -134,7 +175,8 @@ public class User implements UserDetails {
     @Override
     public String toString() {
         return "User{" +
-                "email='" + email + '\'' +
+                "id=" + id +
+                ", email='" + email + '\'' +
                 ", username='" + username + '\'' +
                 ", password='" + password + '\'' +
                 '}';

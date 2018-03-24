@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head>
+    <meta charset="UTF-8">
+    <title>Posts</title>
+</head>
+<style type="text/css">
+    body {
+
+        background-color: antiquewhite;
+    }
+</style>
+<body>
+
+
+<div class="topmenu">
+    <ul>
+        <a th:href="@{/Register}"/>
+        <li>Register</li>
+        </a>
+        <a th:href="@{/login}">
+            <li><b>LogIn</b></li>
+        </a>
+
+        <a th:href="@{/user}">
+            <li>Edit Profile</li>
+        </a>
+
+        <a th:href="@{/logout}">
+            <li><b>LogOut</b></li>
+        </a>
+
+
+    </ul>
+</div>
+<hr>
+<div class="linehoriz"></div>
+<div class="bigmenu" style="margin-left: 470px;">
+    <ul>
+        <a href="/">
+            <li>MAIN</li>
+        </a>
+        <a href="#">
+            <li>NEWS</li>
+        </a>
+        <a th:href="@{/posts}">
+            <li>POSTS</li>
+        </a>
+        <a href="#">
+            <li>ABOUT PROJECT</li>
+        </a>
+        <a th:href="@{/getinfo}">
+            <li>INFO</li>
+        </a>
+
+    </ul>
+</div>
+
+<hr>
+<div class="linehoriz"></div>
+
+<ul>
+   <b>Title: </b> <li th:text="${post.title}"></li>
+    <b>Body:</b><li th:text="${post.body}"></li>
+   <b>Autrhor: </b> <li th:text="${post.author.username}"></li>
+    <b>Date: </b><li th:text="${post.date}"></li>
+</ul>
+
+<table>
+    <tr>
+        <th>Comment</th>
+        <th>Author</th>
+        <th>Date</th>
+
+    </tr>
+    <tr th:each="com : ${commentQ}">
+        <td th:text="${com.body}"></td>
+        <td th:text="${com.commentator.username}"></td>
+        <td th:text="${com.date}"></td>
+
+    </tr>
+</table>
+
+
+
+
+<form  th:action="@{/createcommentos}" method="post">
+    <input type="submit" value="Create comment"/>
+</form>
+
+</div>
+
+<div th:replace="tmp/template::link"/>
+</body>
+</html>
