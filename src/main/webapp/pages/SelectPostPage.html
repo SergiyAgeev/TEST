@@ -85,6 +85,7 @@
 
 
 <form  th:action="@{/createcommentos}" method="post">
+    <input type="hidden" name="id" th:value="${post.id}">
     <input type="submit" value="Create comment"/>
 </form>
 

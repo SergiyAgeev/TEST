@@ -64,7 +64,7 @@
 <div>
     <form  th:action="@{/createcomment}" method="post">
         <input type="text" name="body" placeholder="comment"/>
-        <!--<input type="hidden" name ="post" th:value="${post.title}"/>-->
+        <input type="hidden" name="post" th:value="${post}"/>
         <input type="hidden" name="commentator" th:value="${user.username}"/>
         <input type="submit" value="Create comment"/>
     </form>

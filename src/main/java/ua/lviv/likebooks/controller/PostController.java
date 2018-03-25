@@ -33,17 +33,20 @@ public class PostController {
     public String view(@PathVariable("id") int id,
                        Model model1, Model model2) {
         Post post = postService.findById(id);
-        List<Comments> comments = commentsService.findAll();
+
+
 
         model1.addAttribute("post", post);
-        model2.addAttribute("commentQ", comments);
+        model2.addAttribute("commentQ", post.getComments());
         return "SelectPostPage";
     }
 
     @GetMapping("/showallcomments")
-    public String allcomments(Model model) {
-        List<Comments> comments = commentsService.findAll();
-        model.addAttribute("commentQ", comments);
+    public String allcomments(Model model/* @RequestParam("id") int id*/) {
+        Post post = postService.findById(1);
+
+
+        model.addAttribute("commentQ", post.getComments());
         return "SelectPostPage";
     }
 
@@ -92,12 +95,12 @@ public class PostController {
 
     @PostMapping("/createcomment")
     public String save(@RequestParam("body") String body,
-//                       @RequestParam("post") int id,
+                       @RequestParam("post") int id,
                        @RequestParam("commentator") String username) {
 
         Comments comments = new Comments();
         comments.setCommentator(userService.findByUserName(username));
-//        comments.setPost(postService.findById(id));
+        comments.setPost(postService.findById(id));
         comments.setBody(body);
         comments.setDate(new Date());
         commentsService.save(comments);
@@ -107,26 +110,18 @@ public class PostController {
 
     @PostMapping("/createcommentos")
     public String createcomment(Principal principal,
-                                Model uiModel) {
+                                Model uiModel, @RequestParam ("id") int id) {
 
-
+        Post post = postService.findById(id);
         User user = userService.findByUserName(principal.getName());
         uiModel.addAttribute("user", user);
+        uiModel.addAttribute("post", post.getId());
+
 
         return "CreateCommentPage";
     }
 
-//    @PostMapping("/createcommentos")
-//    public String createcomment(Principal principal,
-//                                Model uiModel, Model model, @RequestParam ("post") String post) {
-//
-//
-//        model.addAttribute("post", post);
-//        User user = userService.findByUserName(principal.getName());
-//        uiModel.addAttribute("user", user);
-//
-//        return "CreateCommentPage";
-//    }
+
 
 }
 

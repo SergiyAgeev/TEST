@@ -22,11 +22,18 @@ public class Post {
     @ManyToOne(optional = false, fetch = FetchType.EAGER)
     private User author;
 
-    @OneToMany(mappedBy = "post", cascade=CascadeType.ALL)
-    private Set<Comments> post = new HashSet<Comments>() {
+    @OneToMany(mappedBy = "post", cascade=CascadeType.ALL, fetch = FetchType.EAGER)
+    private Set<Comments> comments = new HashSet<Comments>();
 
-    };
 
+
+    public Set<Comments> getComments() {
+        return comments;
+    }
+
+    public void setComments(Set<Comments> comments) {
+        this.comments = comments;
+    }
 
     private Date date = new Date();
 
@@ -87,13 +94,7 @@ public class Post {
         this.date = date;
     }
 
-    public Set<Comments> getPost() {
-        return post;
-    }
 
-    public void setPost(Set<Comments> post) {
-        this.post = post;
-    }
 
     @Override
     public String toString() {
