@@ -22,12 +22,12 @@ public class PostServiceImpl implements PostService {
 
     private List<Post> posts = new ArrayList<Post>() {
         {
-            add(new Post("Some Title", "First Post", new User("pidar228@mail.com","ivan"), null));
-            add(new Post("TWO","Second boring post",  new User("sergiyageev@gmail.com","serj"),null));
-            add(new Post("3", "Post #3", new User("sergiyageev@gmail.com","serj"),null));
-            add(new Post("4", "Forth Post", new User("pidar228@mail.com","ivan"), null));
-            add(new Post("5", "Post Number 5", new User("sergiyageev@gmail.com","serj"), null));
-            add(new Post("7", "Sixth Post", new User("pidar228@mail.com","ivan"), null));
+            add(new Post("Some Title", "First Post", new User("pidar228@mail.com", "ivan"), null));
+            add(new Post("TWO", "Second boring post", new User("sergiyageev@gmail.com", "serj"), null));
+            add(new Post("3", "Post #3", new User("sergiyageev@gmail.com", "serj"), null));
+            add(new Post("4", "Forth Post", new User("pidar228@mail.com", "ivan"), null));
+            add(new Post("5", "Post Number 5", new User("sergiyageev@gmail.com", "serj"), null));
+            add(new Post("7", "Sixth Post", new User("pidar228@mail.com", "ivan"), null));
         }
     };
 
@@ -36,11 +36,11 @@ public class PostServiceImpl implements PostService {
     public List<Post> findAll() {
         return pdao.findAll();
     }
+
     @Override
     public List<Post> findLatest5() {
         return this.pdao.findLatest5Posts();
     }
-
 
 
     @Override
@@ -67,17 +67,6 @@ public class PostServiceImpl implements PostService {
     }
 
 
-//    @Override
-//    public void deleteById(int id) {
-//        for (int i = 0; i < this.posts.size(); i++) {
-//            if (Objects.equals(this.posts.get(i).getId(), id)) {
-//                this.posts.remove(i);
-//                return;
-//            }
-//        }
-//        throw new RuntimeException("Post not found: " + id);
-//    }
-
     @Override
     public void deleteById(int id) {
         pdao.delete(id);
@@ -85,11 +74,4 @@ public class PostServiceImpl implements PostService {
     }
 
 
-
-
-//    @Override
-//    public Comments findByPostTitle(String title) {
-//        return cDAO.findByPostTitle(title);
-//    }
 }
-

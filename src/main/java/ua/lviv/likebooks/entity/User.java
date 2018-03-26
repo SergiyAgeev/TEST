@@ -30,14 +30,13 @@ public class User implements UserDetails {
     private Authority authority = Authority.ROLE_USER;
 
     @OneToMany(mappedBy = "author", cascade=CascadeType.ALL)
-    private Set<Post> posts = new HashSet<Post>() {
-
-    };
+    private Set<Post> posts = new HashSet<Post>();
 
     @OneToMany(mappedBy = "commentator", cascade=CascadeType.ALL)
-    private Set<Comments> comments = new HashSet<Comments>() {
+    private Set<Comments> comments = new HashSet<Comments>() ;
 
-    };
+    @OneToMany(mappedBy = "userId", cascade=CascadeType.ALL)
+    private Set<Like> likes = new HashSet<Like>();
 
 
 
@@ -68,6 +67,14 @@ public class User implements UserDetails {
         this.email = email;
         this.username = username;
         this.password = password;
+    }
+
+    public Set<Like> getLikes() {
+        return likes;
+    }
+
+    public void setLikes(Set<Like> likes) {
+        this.likes = likes;
     }
 
     public int getId() {

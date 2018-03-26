@@ -17,7 +17,7 @@ public class CommentsServiceImpl implements CommentsService {
     @Autowired
     private CommentsDAO cDAO;
 
-    private List<Comments> comments = new ArrayList<Comments>() {};
+    private List<Comments> comments = new ArrayList<Comments>();
 
 
     @Override
@@ -42,10 +42,4 @@ public class CommentsServiceImpl implements CommentsService {
 
     }
 
-
-
-//    @Override
-//    public Comments findByPostTitle(String title) {
-//        return cDAO.findByPostTitle(title);
-//    }
 }

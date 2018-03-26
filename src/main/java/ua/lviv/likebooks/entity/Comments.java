@@ -10,7 +10,8 @@ public class Comments {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @Lob @Column(nullable = false)
+    @Lob
+    @Column(nullable = false)
     private String body;
 
     @ManyToOne(optional = false, fetch = FetchType.EAGER)
@@ -24,7 +25,6 @@ public class Comments {
 
     public Comments() {
     }
-
 
 
     public Comments(String body, User commentator, Date date) {

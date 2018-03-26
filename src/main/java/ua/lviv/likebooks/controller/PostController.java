@@ -31,24 +31,28 @@ public class PostController {
 
     @RequestMapping("/post-{id}")
     public String view(@PathVariable("id") int id,
-                       Model model1, Model model2) {
+                       Principal principal,
+                       Model model1) {
         Post post = postService.findById(id);
+        User user = userService.findByUserName(principal.getName());
 
 
 
         model1.addAttribute("post", post);
-        model2.addAttribute("commentQ", post.getComments());
+        model1.addAttribute("commentQ", post.getComments());
+        model1.addAttribute("userId", user.getId());
         return "SelectPostPage";
     }
 
-    @GetMapping("/showallcomments")
-    public String allcomments(Model model/* @RequestParam("id") int id*/) {
-        Post post = postService.findById(1);
-
-
-        model.addAttribute("commentQ", post.getComments());
-        return "SelectPostPage";
-    }
+//    @GetMapping("/showallcomments")
+//    public String allcomments(Model model,@RequestParam("userId") int id/* @RequestParam("id") int id*/) {
+//        Post post = postService.findById(1);
+//        User user = userService.findOne(id);
+//
+//        model.addAttribute("commentQ", post.getComments());
+//        model.addAttribute("userId", user.getId());
+//        return "SelectPostPage";
+//    }
 
     @GetMapping("/posts")
     public String posts(Model model) {

@@ -25,10 +25,21 @@ public class Post {
     @OneToMany(mappedBy = "post", cascade=CascadeType.ALL, fetch = FetchType.EAGER)
     private Set<Comments> comments = new HashSet<Comments>();
 
+    @OneToMany(mappedBy = "postId", cascade=CascadeType.ALL)
+    private Set<Like> likes = new HashSet<Like>();
+
 
 
     public Set<Comments> getComments() {
         return comments;
+    }
+
+    public Set<Like> getLikes() {
+        return likes;
+    }
+
+    public void setLikes(Set<Like> likes) {
+        this.likes = likes;
     }
 
     public void setComments(Set<Comments> comments) {
