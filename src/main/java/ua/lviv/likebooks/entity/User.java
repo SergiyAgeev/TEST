@@ -73,6 +73,7 @@ public class User implements UserDetails {
         return likes;
     }
 
+
     public void setLikes(Set<Like> likes) {
         this.likes = likes;
     }

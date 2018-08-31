@@ -5,8 +5,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
+import ua.lviv.likebooks.dao.LikeDAO;
 import ua.lviv.likebooks.entity.Post;
 import ua.lviv.likebooks.entity.User;
+import ua.lviv.likebooks.service.LikeService;
 import ua.lviv.likebooks.service.MailService;
 import ua.lviv.likebooks.service.PostService;
 import ua.lviv.likebooks.service.UserService;
@@ -26,16 +28,21 @@ public class MainController {
     private UserService userService;
     @Autowired
     private PostService postService;
+    @Autowired
+    private LikeService likeService;
 
 
     @RequestMapping("/")
     public String home(Model model) {
         List<Post> latest5Posts = postService.findLatest5();
         model.addAttribute("latest5posts", latest5Posts);
+//        model.addAttribute("query", likeService.findUserByPost());
 
         List<Post> latest3Posts = latest5Posts.stream()
                 .limit(3).collect(toList());
         model.addAttribute("latest3posts", latest3Posts);
+
+
 
         return "index";
     }
@@ -52,11 +59,13 @@ public class MainController {
     }
 
     @PostMapping("/save")
-    public String save(@RequestParam("username") String username, @RequestParam("password") String password,
-                       @RequestParam("email") String email, @RequestParam("avatar")MultipartFile avatar) {
+    public String save(@RequestParam("username") String username,
+                       @RequestParam("password") String password,
+                       @RequestParam("email") String email,
+                       @RequestParam("avatar") MultipartFile avatar) {
         String path = System.getProperty("user.home") + File.separator + "Multipart\\";
         try {
-            avatar.transferTo(new File(path+avatar.getOriginalFilename()));
+            avatar.transferTo(new File(path + avatar.getOriginalFilename()));
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -65,7 +74,7 @@ public class MainController {
         user.setUsername(username);
         user.setPassword(password);
         user.setEmail(email);
-        user.setAvatar("\\userAvatar\\"+avatar.getOriginalFilename());
+        user.setAvatar("\\userAvatar\\" + avatar.getOriginalFilename());
         userService.save(user);
         mailService.send(user);
 
@@ -108,12 +117,13 @@ public class MainController {
     }
 
     @RequestMapping("/user")
-    public String editUser (Principal principal,
-                            Model uiModel){
+    public String editUser(Principal principal,
+                           Model uiModel) {
         User user = userService.findByUserName(principal.getName());
         uiModel.addAttribute("user", user);
         return "UserEdit";
     }
+
     @GetMapping("/Register")
     public String register() {
         return "RegisterPage";
@@ -124,7 +134,6 @@ public class MainController {
     public String getinfo() {
         return "InfoPage";
     }
-
 
 
 }

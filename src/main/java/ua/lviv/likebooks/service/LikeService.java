@@ -7,4 +7,6 @@ public interface LikeService {
     void save(Like like);
     List<Like> findAll();
     void delete(int id);
+    Like findById(int id);
+
 }

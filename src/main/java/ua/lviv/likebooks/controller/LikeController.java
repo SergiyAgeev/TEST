@@ -23,17 +23,21 @@ public class LikeController {
     @Autowired
     private LikeService likeService;
 
+
     @PostMapping("/likeIt")
     public String makelike(@RequestParam("postId") int postId, @RequestParam("userId") int userId,
-                         @RequestParam("like") String likeIt) {
+                           @RequestParam("like") boolean likeIt) {
 
         Like like = new Like();
         like.setPostId(postService.findById(postId));
         like.setUserId(userService.findOne(userId));
         like.setLikes(likeIt);
         likeService.save(like);
+
         return "PostPages";
+
+//
+
+
     }
-
-
 }

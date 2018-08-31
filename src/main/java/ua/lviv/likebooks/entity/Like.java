@@ -17,19 +17,21 @@ public class Like {
     @ManyToOne(optional = false, fetch = FetchType.EAGER)
     private User userId;
 
+
     @ManyToOne(optional = false, fetch = FetchType.EAGER)
     private Post postId;
 
 
     @Column(name = "likes")
-    private String likes;
+    @Type(type="yes_no")
+    private boolean likes;
 
 
 
     public Like() {
     }
 
-    public Like(User userId, Post postId, String likes) {
+    public Like(User userId, Post postId, boolean likes) {
         this.userId = userId;
         this.postId = postId;
         this.likes = likes;
@@ -59,11 +61,14 @@ public class Like {
         this.postId = postId;
     }
 
-    public String getLikes() {
+
+
+
+    public boolean isLikes() {
         return likes;
     }
 
-    public void setLikes(String likes) {
+    public void setLikes(boolean likes) {
         this.likes = likes;
     }
 

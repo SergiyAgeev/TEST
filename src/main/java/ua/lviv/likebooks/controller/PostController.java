@@ -44,15 +44,7 @@ public class PostController {
         return "SelectPostPage";
     }
 
-//    @GetMapping("/showallcomments")
-//    public String allcomments(Model model,@RequestParam("userId") int id/* @RequestParam("id") int id*/) {
-//        Post post = postService.findById(1);
-//        User user = userService.findOne(id);
-//
-//        model.addAttribute("commentQ", post.getComments());
-//        model.addAttribute("userId", user.getId());
-//        return "SelectPostPage";
-//    }
+
 
     @GetMapping("/posts")
     public String posts(Model model) {
