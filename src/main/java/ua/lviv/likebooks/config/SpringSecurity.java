@@ -61,9 +61,14 @@ public class SpringSecurity extends WebSecurityConfigurerAdapter{
 
 
 
-                .and().formLogin().loginPage("/login")
-                .usernameParameter("username").passwordParameter("password")
-                .and().logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
+                .and()
+                .formLogin()
+                .loginPage("/login")
+                .usernameParameter("username")
+                .passwordParameter("password")
+                .and()
+                .logout()
+                .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
                 .and()
                 .csrf().disable();
 
